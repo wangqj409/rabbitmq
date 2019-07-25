@@ -1,0 +1,22 @@
+version: "3.5"
+networks:
+    localnet:
+        driver: bridge
+
+services:
+    rabbit:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        networks:
+            - localnet
+        ports:
+            - 56720:5672
+    rabbit-manage:
+        build:
+            context: ./management
+            dockerfile: Dockerfile
+        networks:
+            - localnet
+        ports:
+            - 55672:15672
